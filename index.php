@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Contact Me</title>
+      <link rel="stylesheet" href="stylesf.css">
+  </head>
+    
+<body>
+    <h2 class= containertexttop>Contact Form</h2>
+    
+    <div class="containerform">
+        <form action="mail_handler.php" method="POST">
+            First Name:<br>
+            <input type="text" name="first_name"><br>
+            Last Name:<br>
+            <input type="text" name="last_name"><br>
+            E-mail:<br>
+            <input type="text" name="email"><br>
+            Comment:<br><textarea rows= "5" name="Message" cols= "30"></textarea><br>
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </div>
+</body>
+    
+</html>
+    
+<?php
+if(isset($_POST['submit'])){
+    $to = "YOUR_EMAIL_ADDRESS_HERE";
+
+
+
+    $name = $_POST['name'];
+    $email= $_POST['email'];
+    $phone= $_POST['phone'];
+    $subject= $_POST['subject'];
+    $body= $_POST['body'];
+    $headers = 'From: '.$email . "\r\n";
+
+
+    $body = "name : ".$name. "\r\n" .
+    		"Phone : ".$phone. "\r\n" .
+    		"Message : " . $body;
+    if(mail($to, $subject, $body , $headers)){
+        echo "Mail Sent!";
+    }else{
+         echo "Failed To Send Mail";
+    }
+}
+
+?>
+    
